@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from openai import OpenAI
-import pinecone
+from pinecone import Pinecone
 import os
 
 # Load env vars
@@ -11,11 +11,15 @@ load_dotenv()
 
 # Clients
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-pinecone.init(
-    api_key=os.getenv("PINECONE_API_KEY"),
-    environment=os.getenv("PINECONE_ENVIRONMENT")
-)
-index = pinecone.Index(os.getenv("PINECONE_INDEX_NAME"))
+#pinecone.init(
+ #   api_key=os.getenv("PINECONE_API_KEY"),
+  
+#  environment=os.getenv("PINECONE_ENVIRONMENT")
+#)
+#index = pinecone.Index(os.getenv("PINECONE_INDEX_NAME"))
+
+pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+index = pc.Index(os.getenv("PINECONE_INDEX_NAME"))
 
 # FastAPI app
 app = FastAPI()
