@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -6,66 +6,65 @@ from openai import OpenAI
 import pinecone
 import os
 
-# Load environment
+# Load env vars
 load_dotenv()
 
-# OpenAI & Pinecone setup
+# Clients
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 pinecone.init(
     api_key=os.getenv("PINECONE_API_KEY"),
     environment=os.getenv("PINECONE_ENVIRONMENT")
 )
 index = pinecone.Index(os.getenv("PINECONE_INDEX_NAME"))
 
+# FastAPI app
 app = FastAPI()
+
+# Allow CORS (optional if building frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], allow_methods=["*"], allow_headers=["*"]
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
-# Request schema
+# Request model
 class AskRequest(BaseModel):
     question: str
 
-# Route
 @app.post("/ask")
 def ask(req: AskRequest):
     query = req.question.strip()
     if not query:
-        return {"error": "Empty question."}
+        return {"error": "Question is empty."}
 
-    # Embed user question
     try:
-        embed = client.embeddings.create(
+        embedding = client.embeddings.create(
             input=[query],
             model=os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
         ).data[0].embedding
     except Exception as e:
         return {"error": f"Embedding failed: {str(e)}"}
 
-    # Query Pinecone
     try:
-        results = index.query(vector=embed, top_k=3, include_metadata=True)
-        contexts = [match.metadata["title"] + ":\n" + match.metadata["url"] for match in results.matches]
-        context_text = "\n\n".join(contexts)
+        results = index.query(vector=embedding, top_k=3, include_metadata=True)
+        contexts = [f"{m.metadata['title']}\n{m.metadata['url']}" for m in results.matches]
+        context_block = "\n\n".join(contexts)
     except Exception as e:
         return {"error": f"Pinecone query failed: {str(e)}"}
 
-    # Compose prompt
-    prompt = f"""You are a Microsoft cloud expert assistant. Use the following documentation snippets to answer the question concisely and accurately:
+    prompt = f"""You are a helpful Microsoft cloud expert. Use the following documentation snippets to answer the user's question with accurate, concise information.
 
-{context_text}
+{context_block}
 
 Q: {query}
 A:"""
 
-    # Call OpenAI
     try:
         chat = client.chat.completions.create(
             model="gpt-4",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.3
+            temperature=0.2
         )
         answer = chat.choices[0].message.content.strip()
     except Exception as e:
