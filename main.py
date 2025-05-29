@@ -7,12 +7,9 @@ from pinecone import Pinecone
 import os
 from fastapi.responses import RedirectResponse
 
-# FastAPI app
-app = FastAPI()
 
-@app.get("/")
-def root():
-    return RedirectResponse("https://cloud-docs-ui.onrender.com")
+
+
 
 # Load env vars
 load_dotenv()
@@ -29,7 +26,8 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index(os.getenv("PINECONE_INDEX_NAME"))
 
-
+# FastAPI app
+app = FastAPI()
 
 # Allow CORS (optional if building frontend)
 app.add_middleware(
