@@ -1,21 +1,22 @@
 {
   "name": "cloud-docs-ui",
   "version": "1.0.0",
-  "private": true,
+  "description": "Frontend for CloudDocs AI using React and TailwindCSS",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "framer-motion": "^10.16.1",
+    "lucide-react": "^0.356.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "framer-motion": "^11.0.0",
-    "lucide-react": "^0.270.0",
-    "shadcn-ui": "latest"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
-    "@vitejs/plugin-react": "^4.0.0"
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.10"
   }
 }
