@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cloud-docs-ui
+    env: static
+    staticPublishPath: ui/dist
+    buildCommand: npm install && npm run build
+    startCommand: serve ui/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+    plan: free
+    autoDeploy: true
