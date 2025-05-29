@@ -1,5 +1,6 @@
+// ui/app.jsx – Clean landing page for CloudDocs AI
+
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card"; // optional: replace this too if not used
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -10,6 +11,7 @@ export default function LandingPage() {
 
   return (
     <main className="min-h-screen bg-white text-gray-900 font-sans">
+      {/* Header */}
       <header className="flex justify-between items-center px-6 py-4 shadow-sm border-b">
         <div className="flex items-center gap-2">
           <img src="/logo.png" alt="CloudDocs Logo" className="w-8 h-8" />
@@ -17,6 +19,7 @@ export default function LandingPage() {
         </div>
       </header>
 
+      {/* Hero Section */}
       <section className="py-24 px-6 text-center max-w-3xl mx-auto">
         <motion.h1
           className="text-4xl md:text-5xl font-bold mb-6"
@@ -40,21 +43,22 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto px-6 py-16">
+      {/* Feature Grid */}
+      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto px-6 py-16">
         {[
           "Powered by real-time Microsoft Docs",
           "No hallucinations, only trusted content",
-          "Deep coverage of Azure, Key Vault, AI Services, and more",
-          "Designed for developers, architects, and cloud teams"
+          "Covers Azure, Key Vault, AI Services, and more",
+          "Built for developers, architects, and cloud teams"
         ].map((text, i) => (
-          <Card key={i} className="shadow-md">
-            <CardContent className="p-6 text-left text-base font-medium text-gray-800">
-              {text}
-            </CardContent>
-          </Card>
+          <div
+            key={i}
+            className="rounded-xl border bg-white p-6 shadow-md text-left text-base font-medium text-gray-800"
+          >
+            {text}
+          </div>
         ))}
       </section>
     </main>
   );
 }
-
