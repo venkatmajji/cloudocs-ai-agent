@@ -1,8 +1,5 @@
-// ui/app.jsx – Landing page for Render deployment
-
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card"; // optional: replace this too if not used
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -34,14 +31,22 @@ export default function LandingPage() {
         </p>
 
         <div className="flex justify-center">
-          <Button size="lg" className="rounded-2xl text-lg px-6" onClick={handleCTA}>
+          <button
+            onClick={handleCTA}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl text-lg px-6 py-2 flex items-center transition"
+          >
             Start Asking Questions <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          </button>
         </div>
       </section>
 
       <section className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto px-6 py-16">
-        {["Powered by real-time Microsoft Docs", "No hallucinations, only trusted content", "Deep coverage of Azure, Key Vault, AI Services, and more", "Designed for developers, architects, and cloud teams"].map((text, i) => (
+        {[
+          "Powered by real-time Microsoft Docs",
+          "No hallucinations, only trusted content",
+          "Deep coverage of Azure, Key Vault, AI Services, and more",
+          "Designed for developers, architects, and cloud teams"
+        ].map((text, i) => (
           <Card key={i} className="shadow-md">
             <CardContent className="p-6 text-left text-base font-medium text-gray-800">
               {text}
@@ -52,3 +57,4 @@ export default function LandingPage() {
     </main>
   );
 }
+
