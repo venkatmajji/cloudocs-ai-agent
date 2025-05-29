@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 export default function LandingPage() {
   const handleCTA = () => {
-    window.location.href = "https://cloudocs-ai-agent.onrender.com/ask";
+    window.location.href = "https://cloudocs-ai-agent-6xv2.onrender.com/ask";
   };
 
   return (
