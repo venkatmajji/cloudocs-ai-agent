@@ -5,6 +5,13 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from pinecone import Pinecone
 import os
+from fastapi.responses import RedirectResponse
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return RedirectResponse("https://cloud-docs-ui.onrender.com")
 
 # Load env vars
 load_dotenv()
