@@ -17,14 +17,4 @@ services:
         value: text-embedding-3-small
     plan: free
     autoDeploy: true
-
-  - type: web
-    name: cloud-docs-ui
-    env: static
-    staticPublishPath: ui/dist
-    buildCommand: npm install && npm run build
-    startCommand: serve ui/dist
-    envVars:
-      - key: NODE_VERSION
-        value: 18
-
+ 
