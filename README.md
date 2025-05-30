@@ -12,13 +12,13 @@ An AI-powered assistant for Microsoft documentation — ask technical questions 
 
 ## 🚀 Try It Live
 
-👉 https://cloudocs-ui.onrender.com/
+👉 [https://cloud-docs-ui.onrender.com](https://cloud-docs-ui.onrender.com)
 
 ## 🛠 Stack
 
-- Frontend: React + TailwindCSS + Vite
-- Backend: FastAPI + OpenAI GPT-4 + Pinecone
-- Deployment: Render.com (separate frontend & backend services)
+- **Frontend**: React + TailwindCSS + Vite  
+- **Backend**: FastAPI + OpenAI GPT-4 + Pinecone  
+- **Deployment**: Render.com (separate frontend & backend services)
 
 ## 📚 How It Works
 
@@ -27,18 +27,30 @@ An AI-powered assistant for Microsoft documentation — ask technical questions 
 3. FastAPI receives user questions, embeds them, and performs similarity search
 4. Answers generated using top matched docs as context
 
-## 🧪 Dev Setup
+## 🧪 Local Dev Setup
 
 ```bash
-# Backend
+# Backend (from root/scraper)
 cd scraper
-python -m venv venv && source venv/bin/activate
+python -m venv venv && source venv/bin/activate  # or `venv\Scripts\activate` on Windows
 pip install -r requirements.txt
 
-# Frontend
+# Frontend (from root/ui)
 cd ui
 npm install
 npm run dev
+```
+
+## 📁 Project Structure
+
+```
+cloudocs-ai-agent/
+├── scraper/            # Crawler, embedder, FastAPI backend
+├── ui/                 # React + Tailwind frontend
+├── docs/               # Raw + embedded document JSON
+├── render.yaml         # Render deployment config for both services
+└── .env.example        # Example env file for secrets
+```
 
 ## 🌐 Deployment
 
@@ -54,15 +66,26 @@ This app is deployed fully on [Render](https://render.com):
 
 To deploy your own version:
 - Fork this repo
-- Add your `.env` secrets (OpenAI + Pinecone)
+- Add your `.env` secrets (see below)
 - Push to GitHub → Render auto-deploys both services from `render.yaml`
 
----
+## 🔐 Environment Variables
 
-## 👤 **Author**
+Copy `.env.example` → `.env` and fill in your API credentials:
+
+```bash
+cp .env.example .env
+```
+
+Then restart your backend service or FastAPI server.
+
+## 👤 Author
 
 Built by **[Bhaskar Majji](https://www.linkedin.com/in/bhaskarmajji)** —  
-Startup builder, AI agent tinkerer, and cloud tech strategist.
+Microsoftie, Startup builder, AI agent tinkerer, and cloud tech strategist.
 
 > *“Turning complex documentation into instant clarity.”*
 
+---
+
+MIT License • Powered by OpenAI, Pinecone, and Render
