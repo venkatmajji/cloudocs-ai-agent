@@ -40,3 +40,29 @@ cd ui
 npm install
 npm run dev
 
+## 🌐 Deployment
+
+This app is deployed fully on [Render](https://render.com):
+
+- **Backend (FastAPI)**  
+  [https://cloudocs-ai-agent-6xv2.onrender.com](https://cloudocs-ai-agent-6xv2.onrender.com)  
+  Handles `/ask` POST request and returns answers from Pinecone + OpenAI
+
+- **Frontend (React + Tailwind)**  
+  [https://cloud-docs-ui.onrender.com](https://cloud-docs-ui.onrender.com)  
+  Clean landing page and live Q&A interface
+
+To deploy your own version:
+- Fork this repo
+- Add your `.env` secrets (OpenAI + Pinecone)
+- Push to GitHub → Render auto-deploys both services from `render.yaml`
+
+---
+
+## 👤 Author
+
+Built by **[Bhaskar Majji](https://www.linkedin.com/in/bhaskarmajji)** —  
+Startup builder, AI agent tinkerer, and cloud tech strategist.
+
+> *“Turning complex documentation into instant clarity.”*
+
