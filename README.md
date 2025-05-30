@@ -59,7 +59,7 @@ To deploy your own version:
 
 ---
 
-## 👤 Author
+## 👤 **Author**
 
 Built by **[Bhaskar Majji](https://www.linkedin.com/in/bhaskarmajji)** —  
 Startup builder, AI agent tinkerer, and cloud tech strategist.
