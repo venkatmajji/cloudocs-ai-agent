@@ -12,7 +12,7 @@ An AI-powered assistant for Microsoft documentation — ask technical questions 
 
 ## 🚀 Try It Live
 
-👉 [cloudocs-ai-agent-6xv2.onrender.com](https://cloudocs-ai-agent-6xv2.onrender.com)
+👉 https://cloudocs-ui.onrender.com/
 
 ## 🛠 Stack
 
